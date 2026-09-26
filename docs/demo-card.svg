@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="370" viewBox="0 0 960 370" role="img" aria-label="Схема: профиль и HTML-вакансия превращаются в карточку с оценкой">
+  <rect width="960" height="370" rx="20" fill="#f4f6fb"/>
+  <text x="34" y="51" font-family="Arial, sans-serif" font-size="28" font-weight="700" fill="#17203b">Офлайн-демо: одна вакансия, два профиля</text>
+  <rect x="34" y="86" width="240" height="182" rx="16" fill="#ffffff" stroke="#cbd5e1"/>
+  <text x="54" y="120" font-family="Arial, sans-serif" font-size="19" font-weight="700" fill="#17203b">1. Свой профиль</text>
+  <text x="54" y="155" font-family="Arial, sans-serif" font-size="16" fill="#344054">Навыки и ключевые слова</text>
+  <text x="54" y="181" font-family="Arial, sans-serif" font-size="16" fill="#344054">Источники и критерии</text>
+  <text x="54" y="222" font-family="Arial, sans-serif" font-size="14" fill="#667085">profiles/example.json</text>
+  <text x="291" y="185" font-family="Arial, sans-serif" font-size="33" font-weight="700" fill="#4b56b5">+</text>
+  <rect x="340" y="86" width="240" height="182" rx="16" fill="#ffffff" stroke="#cbd5e1"/>
+  <text x="360" y="120" font-family="Arial, sans-serif" font-size="19" font-weight="700" fill="#17203b">2. HTML-вакансия</text>
+  <text x="360" y="155" font-family="Arial, sans-serif" font-size="16" fill="#344054">Название и компания</text>
+  <text x="360" y="181" font-family="Arial, sans-serif" font-size="16" fill="#344054">Зарплата и условия</text>
+  <text x="360" y="222" font-family="Arial, sans-serif" font-size="14" fill="#667085">вымышленный пример</text>
+  <text x="596" y="185" font-family="Arial, sans-serif" font-size="33" font-weight="700" fill="#4b56b5">→</text>
+  <rect x="650" y="86" width="275" height="182" rx="16" fill="#e8edff" stroke="#8794ea"/>
+  <text x="670" y="120" font-family="Arial, sans-serif" font-size="19" font-weight="700" fill="#17203b">3. Карточка</text>
+  <text x="670" y="155" font-family="Arial, sans-serif" font-size="16" fill="#344054">Специалист по</text>
+  <text x="670" y="177" font-family="Arial, sans-serif" font-size="16" fill="#344054">автоматизации</text>
+  <text x="670" y="211" font-family="Arial, sans-serif" font-size="16" font-weight="700" fill="#344054">Скоринг 95/100</text>
+  <text x="34" y="325" font-family="Arial, sans-serif" font-size="16" fill="#667085">Балл в демо считается по правилам. Telegram и LLM не вызываются.</text>
+</svg>
