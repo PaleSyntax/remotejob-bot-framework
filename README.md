@@ -20,9 +20,17 @@ python -m venv .venv
 | Режим | Что происходит |
 | --- | --- |
 | `--demo` | Три вымышленные HTML-страницы проходят через настоящий парсер и ваш профиль. Сеть, Telegram и токены не нужны. Балл рассчитывается по ключевым словам. |
-| `run-once --html` | Читает сохранённую вами HTML-страницу вакансии и показывает карточку после фильтров. Запросов в сеть нет. |
+| `run-once --html` | Читает сохранённую HTML-страницу вакансии в формате `remote-job.ru` и показывает карточку после фильтров. Запросов в сеть нет. |
 | `run-once --search-url` | Один раз открывает указанную страницу поиска на `remote-job.ru`, читает не более 3 найденных вакансий и показывает карточки. Структура сайта может измениться. |
 | `run-once ... --telegram` | Отправляет полученные карточки в ваш чат через Telegram Bot API. Отправка происходит только с этим флагом. |
+
+## Сайты вакансий и Deep Research
+
+**Сейчас в открытом каркасе** есть один парсер вакансий — для `remote-job.ru`. Команда `run-once --search-url` принимает адреса поиска только на этом сайте. Просто указать в профиле URL другого сайта пока нельзя: `enabled_sources` поддерживает только `remotejob`. В исходном частном приложении есть код для пяти площадок: `remote-job.ru`, `hh.ru`, Habr Career, `designer.ru` и `HireHi.ru`; сюда эти дополнительные парсеры не перенесены. Их текущую работу на живых сайтах при подготовке каркаса не проверяли.
+
+Чтобы добавить другой сайт, например `hh.ru`, Habr Career или `designer.ru`, напишите под него отдельный адаптер. Он должен получить вакансии и привести их к общему формату `RawVacancy`; интерфейс `VacancySource` уже описан в `models.py`. Затем зарегистрируйте источник в `search_profiles/registry.py`, подключите его в `run_once.py` и добавьте тест с примером страницы или ответа API. Структура сайтов меняется, поэтому новый адаптер нужно проверять на выбранном источнике.
+
+**Deep Research** в исходном приватном RemoteJob имеет пять режимов запроса (`general`, `job`, `skills`, `vibe`, `vacancy`) и реализации пяти поисковых провайдеров: Exa, Tavily, Brave Search, SerpAPI и DuckDuckGo Instant Answer. Они ищут материалы по запросу для исследовательского отчёта. Команда `/research` и эти провайдеры в данный открытый каркас не включены. Если добавляете их в свою версию, настройте каждого провайдера отдельно; нужные API-ключи храните в игнорируемом `.env`.
 
 LLM в этой версии **не подключён**. Балл прозрачен: совпадение ключевых слов и признак удалённой работы. Место для собственной модели находится в `pipeline.evaluate`; парсер и доставка вынесены отдельно. Это основа для своего бота, а не готовый сервис непрерывного мониторинга.
 
@@ -73,4 +81,4 @@ LLM в этой версии **не подключён**. Балл прозра�
 
 Лицензия: MIT.
 
-**English:** A small configurable vacancy-bot skeleton. It has an offline demo, a one-shot parser for saved HTML or a public search page, and optional Telegram delivery. You can add an adapter for any model provider with an API and keep its key in the ignored `.env` file; no LLM adapter or continuous monitoring is included yet.
+**English:** A small configurable vacancy-bot skeleton. The bundled parser handles `remote-job.ru`; other job sites need their own adapters. Five web-search providers implemented in the private original are not bundled here. You can also add an adapter for a model provider and keep its key in the ignored `.env` file. Continuous monitoring and LLM evaluation are not included yet.
