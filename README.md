@@ -26,6 +26,12 @@ python -m venv .venv
 
 LLM в этой версии **не подключён**. Балл прозрачен: совпадение ключевых слов и признак удалённой работы. Место для собственной модели находится в `pipeline.evaluate`; парсер и доставка вынесены отдельно. Это основа для своего бота, а не готовый сервис непрерывного мониторинга.
 
+## Подключение своей нейросети
+
+Каркас не привязан к конкретному поставщику: можно добавить модель любого сервиса с API или свой сервер. Скопируйте `.env.example` в `.env` и запишите там ключ выбранного сервиса как `AI_API_KEY`; файл `.env` исключён из Git. Затем добавьте адаптер вызова этого API и подключите его к оценке вакансии в `pipeline.py` / `run_once.py`. Адаптер должен сам загрузить `.env` (например, через `python-dotenv`) и прочитать `AI_API_KEY` из окружения. У разных сервисов отличаются адреса, форматы запросов и названия моделей, поэтому их настройка остаётся в адаптере.
+
+**Сейчас одного ключа недостаточно:** готового LLM-адаптера нет, `AI_API_KEY` основным кодом не читается, а `--demo` и `run-once` продолжают работать по прозрачным правилам. Не вписывайте ключ в JSON-профиль или исходный код.
+
 ## Настройте под себя
 
 1. Скопируйте `profiles/example.json` в `profiles/local.json`. Файл `local.json` игнорируется Git.
@@ -65,4 +71,4 @@ LLM в этой версии **не подключён**. Балл прозра�
 
 Лицензия: MIT.
 
-**English:** A small configurable vacancy-bot skeleton. It has an offline demo, a one-shot parser for saved HTML or a public search page, and optional Telegram delivery. Continuous monitoring and LLM evaluation are not included.
+**English:** A small configurable vacancy-bot skeleton. It has an offline demo, a one-shot parser for saved HTML or a public search page, and optional Telegram delivery. You can add an adapter for any model provider with an API and keep its key in the ignored `.env` file; no LLM adapter or continuous monitoring is included yet.
